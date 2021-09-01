@@ -1,0 +1,13 @@
+// platform cache
+.vscode/
+vivado*.*
+.DS_Store
+
+// installation cache
+scripts/verif-tools/verilog2smv.sh
+scripts/verif-tools/verilog2smv-1.1.2
+
+// make cache
+scripts/tmp-build/
+scripts/simv
+scripts/*.mem
