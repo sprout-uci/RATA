@@ -12,25 +12,25 @@ RATA extends [VRASED](https://github.com/sprout-uci/vrased), to implement remote
 
 ## RATA directory structure
 
-├── application
-├── msp_bin
-├── openmsp430
-│   ├── contraints_fpga
-│   ├── fpga
-│   ├── msp_core
-│   ├── msp_memory
-│   ├── msp_periph
-│   └── simulation
-├── scripts
-│   ├── build
-│   └── verif-tools
-├── verification_specs
-│   └── soundness_and_security_proofs
-└── vrased
-	├── hw-mod
-	│   └── hw-mod-auth
-	└── sw-att
-	    └── hacl-c
+        ├── application
+        ├── msp_bin
+        ├── openmsp430
+        │   ├── contraints_fpga
+        │   ├── fpga
+        │   ├── msp_core
+        │   ├── msp_memory
+        │   ├── msp_periph
+        │   └── simulation
+        ├── scripts
+        │   ├── build
+        │   └── verif-tools
+        ├── verification_specs
+        │   └── soundness_and_security_proofs
+        └── vrased
+                ├── hw-mod
+                │   └── hw-mod-auth
+                └── sw-att
+                └── hacl-c
 
 
 ## Installation and Dependencies
