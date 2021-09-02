@@ -12,6 +12,7 @@ RATA extends [VRASED](https://github.com/sprout-uci/vrased), to implement remote
 
 ## RATA directory structure
 
+```bash
 ├── application
 ├── msp_bin
 ├── openmsp430
@@ -31,7 +32,7 @@ RATA extends [VRASED](https://github.com/sprout-uci/vrased), to implement remote
 	│   └── hw-mod-auth
 	└── sw-att
 	    └── hacl-c
-
+```
 
 ## Installation and Dependencies
 
