@@ -8,6 +8,8 @@ In this work, we propose Remote Attestation with TOCTOU Avoidance (RATA): a prov
 
 ## About the repository
 
+**THIS REPOSITORY IS STILL UNDER CONSTRUCTION**
+
 RATA extends [VRASED](https://github.com/sprout-uci/vrased), to implement remote attestation secure against Time-Of-Check Time-Of-Use (TOCTOU) attacks. This repository contains two RATA techniques, RATAa and RATAb. RATAb is the default configuration for building and running.
 
 ## RATA directory structure
