@@ -1,14 +1,14 @@
 # On the TOCTOU Problem in Remote Attestation 
 
-**RATA paper (To appear at CCS'21)**: https://arxiv.org/pdf/2005.03873.pdf
+**[THIS REPOSITORY IS STILL UNDER CONSTRUCTION]**
+
+**RATA paper**: https://dl.acm.org/doi/abs/10.1145/3460120.3484532
 
 Much attention has been devoted to verifying software integrity of remote embedded (IoT) devices. Many techniques, with different assumptions and security guarantees, have been proposed under the common umbrella of so-called Remote Attestation (RA). Aside from executable’s integrity verification, RA serves as a foundation for many security services, such as proofs of memory erasure, system reset, software update, and verification of runtime properties. Prior RA techniques verify the remote device’s binary at the time when RA functionality is executed, thus providing no information about the device’s binary before current RA execution or between consecutive RA executions. This implies that presence of transient malware (in the form of modified binary) may be undetected. In other words, if transient malware infects a device (by modifying its binary), performs its nefarious tasks, and erases itself before the next attestation, its temporary presence will not be detected. This important problem, called Time-Of-Check-Time-Of-Use (TOCTOU), is well-known in the research literature and remains unaddressed in the context of hybrid RA.
 
 In this work, we propose Remote Attestation with TOCTOU Avoidance (RATA): a provably secure approach to address the RA TOCTOU problem. With RATA, even malware that erases itself before execution of the next RA, can not hide its ephemeral presence. RATA targets hybrid RA architectures, which are aimed at low-end embedded devices. We present two alternative techniques – RATAa and RATAb – suitable for devices with and without real-time clocks, respectively. Each is shown to be secure and accompanied by a publicly available and formally verified implementation. Our evaluation demonstrates low hardware overhead of both techniques. Compared with current hybrid RA architectures – that offer no TOCTOU protection – 𝑅𝐴𝑇𝐴 incurs no extra runtime overhead. In fact, it substantially reduces the time complexity of RA computations: from linear to constant time.
 
 ## About the repository
-
-**THIS REPOSITORY IS STILL UNDER CONSTRUCTION**
 
 RATA extends [VRASED](https://github.com/sprout-uci/vrased), to implement remote attestation secure against Time-Of-Check Time-Of-Use (TOCTOU) attacks. This repository contains two RATA techniques, RATAa and RATAb. RATAb is the default configuration for building and running.
 
