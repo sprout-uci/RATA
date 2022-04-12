@@ -18,21 +18,21 @@ input           w_en;
 output          reset;
 
 // MACROS ///////////////////////////////////////////
-parameter SDATA_BASE = 16'hA000;
-parameter SDATA_SIZE = 16'h1000;
+parameter SDATA_BASE = 16'h400;
+parameter SDATA_SIZE = 16'hC00;
 //
 parameter HMAC_BASE = 16'h8000;
-parameter HMAC_SIZE = 16'h001F;
+parameter HMAC_SIZE = 16'h0020;
 //
 parameter CTR_BASE = 16'h9000;
 parameter CTR_SIZE = 16'h0020;
 parameter LAST_CTR_ADDR = CTR_BASE + CTR_SIZE - 2;
 //
-parameter SMEM_BASE = 16'hE000;
-parameter SMEM_SIZE = 16'h1000;
+parameter SMEM_BASE = 16'hA000;
+parameter SMEM_SIZE = 16'h4000;
 //
 parameter KMEM_BASE = 16'hFEFE;
-parameter KMEM_SIZE = 16'h001F;
+parameter KMEM_SIZE = 16'h0040;
 /////////////////////////////////////////////////////
 
 

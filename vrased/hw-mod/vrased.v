@@ -48,7 +48,7 @@ parameter SMEM_BASE = 16'hA000;
 parameter SMEM_SIZE = 16'h4000;
 //
 parameter KMEM_BASE = 16'h6A00;
-parameter KMEM_SIZE = 16'h001F;
+parameter KMEM_SIZE = 16'h0040;
 
 parameter LMT_BASE = 16'h0040;
 parameter LMT_SIZE = 16'h0020;
