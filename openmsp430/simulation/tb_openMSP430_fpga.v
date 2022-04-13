@@ -165,6 +165,7 @@ wire       [15:0] r14   = dut.openMSP430_0.execution_unit_0.register_file_0.r14;
 wire       [15:0] r15   = dut.openMSP430_0.execution_unit_0.register_file_0.r15;
 
 //RATA values
+wire        auth = pc == 16'hA07E;
 wire        upLMT_periph   = dut.openMSP430_0.LMT_0.upLMT;
 wire        upLMT_vrased   = dut.openMSP430_0.up_lmt;
 wire        [15:0] MR_LMT [15:0]  = dut.openMSP430_0.LMT_0.MR_mem;

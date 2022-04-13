@@ -57,14 +57,14 @@ parameter FST_POR_ADDR = 16'ha028; //SMEM_BASE + 16'hC00;
 parameter LST_POR_ADDR = 16'ha048; // SMEM_BASE + 16'hD00;
 //
 parameter AR_BASE = 16'hE000;
-parameter AR_SIZE = 16'h2000;
+parameter AR_SIZE = 16'h1000;
 //
-parameter CTR_BASE = 16'h0270;
+parameter CTR_BASE = 16'hFFC0;
 parameter CTR_SIZE = 16'h0020;
 /////////////////////////////////////////////////////
 
 parameter RESET_HANDLER = 16'h0000;
-parameter AUTH_HANDLER = SMEM_BASE + 16'h0474;
+parameter AUTH_HANDLER = 16'hA07E;
 
 wire    X_stack_reset;
 X_stack #(

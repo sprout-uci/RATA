@@ -9,5 +9,6 @@ scripts/verif-tools/verilog2smv-1.1.2
 
 // make cache
 scripts/tmp-build/
+scripts/build-verif/
 scripts/simv
 scripts/*.mem

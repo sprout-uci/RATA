@@ -71,9 +71,15 @@ module  openMSP430 (
     per_en,                                  // Peripheral enable (high active)
     per_we,                                  // Peripheral write byte enable (high active)
     pmem_addr,                               // Program Memory address
+
+    fpmem_addr,                               // Program Memory address for front end access
+
     pmem_cen,                                // Program Memory chip enable (low active)
     pmem_din,                                // Program Memory data input (optional)
     pmem_wen,                                // Program Memory write byte enable (low active) (optional)
+
+    epmem_wen,                                // Program Memory write byte enable (low active) from execution unit
+
     puc_rst,                                 // Main system reset
     smclk,                                   // ASIC ONLY: SMCLK
     smclk_en,                                // FPGA ONLY: SMCLK enable
@@ -139,9 +145,15 @@ output        [15:0] per_din;                // Peripheral data input
 output               per_en;                 // Peripheral enable (high active)
 output         [1:0] per_we;                 // Peripheral write byte enable (high active)
 output [`PMEM_MSB:0] pmem_addr;              // Program Memory address
+
+output [`PMEM_MSB:0] fpmem_addr;              // Program Memory address for front end access
+
 output               pmem_cen;               // Program Memory chip enable (low active)
 output        [15:0] pmem_din;               // Program Memory data input (optional)
 output         [1:0] pmem_wen;               // Program Memory write enable (low active) (optional)
+
+output         [1:0] epmem_wen;               // Program Memory write enable (low active) from execution unit
+
 output               puc_rst;                // Main system reset
 output               smclk;                  // ASIC ONLY: SMCLK
 output               smclk_en;               // FPGA ONLY: SMCLK enable
@@ -525,9 +537,15 @@ omsp_mem_backbone mem_backbone_0 (
     .per_we            (per_we),             // Peripheral write enable (high active)
     .per_en            (per_en),             // Peripheral enable (high active)
     .pmem_addr         (pmem_addr),          // Program Memory address
+
+    .fpmem_addr        (fpmem_addr),          // Program Memory address for front end access
+
     .pmem_cen          (pmem_cen),           // Program Memory chip enable (low active)
     .pmem_din          (pmem_din),           // Program Memory data input (optional)
     .pmem_wen          (pmem_wen),           // Program Memory write enable (low active) (optional)
+    
+    .epmem_wen          (epmem_wen),           // Program Memory write enable (low active) from execution unit
+    
     .srom_addr         (srom_addr),          // SROM Memory address
     .srom_cen          (srom_cen),           // SROM Memory chip enable
     .srom_wen          (srom_wen),           // SROM Memory write enable
@@ -562,6 +580,7 @@ omsp_mem_backbone mem_backbone_0 (
     .puc_rst           (puc_rst),            // Main system reset
     .scan_enable       (scan_enable)         // Scan enable (active during scan shifting)
 );
+
 
 
 wire up_lmt;

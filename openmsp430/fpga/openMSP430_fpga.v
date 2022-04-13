@@ -312,8 +312,14 @@ wire [`DMEM_MSB:0] dmem_addr;
 wire        [15:0] dmem_din;
 wire         [1:0] dmem_wen;
 wire [`PMEM_MSB:0] pmem_addr;
+
+wire [`PMEM_MSB:0] fpmem_addr;
+
 wire        [15:0] pmem_din;
 wire         [1:0] pmem_wen;
+
+wire         [1:0] epmem_wen;
+
 wire        [13:0] irq_acc;
 
 // openMSP430 input buses
@@ -526,9 +532,15 @@ openMSP430 openMSP430_0 (
     .per_we            (per_we),       // Peripheral write enable (high active)
     .per_en            (per_en),       // Peripheral enable (high active)
     .pmem_addr         (pmem_addr),    // Program Memory address
+
+    .fpmem_addr         (fpmem_addr),    // Program Memory address for front end access
+
     .pmem_cen          (pmem_cen),     // Program Memory chip enable (low active)
     .pmem_din          (pmem_din),     // Program Memory data input (optional)
     .pmem_wen          (pmem_wen),     // Program Memory write enable (low active) (optional)
+
+    .epmem_wen          (epmem_wen),     // Program Memory write enable (low active) from execution unit
+
     .puc_rst           (puc_rst),      // Main system reset
     .smclk             (),             // ASIC ONLY: SMCLK
     .smclk_en          (smclk_en),     // FPGA ONLY: SMCLK enable
@@ -876,10 +888,15 @@ pmem #(`PMEM_MSB, `PMEM_SIZE) pmem_0 (
 
 // INPUTs
     .ram_addr    (pmem_addr),          // Program Memory address
+
+    .fpmem_addr    (fpmem_addr),          // Program Memory address for front end access
+
     .ram_cen     (pmem_cen),           // Program Memory chip enable (low active)
     .ram_clk     (mclk),               // Program Memory clock
     .ram_din     (pmem_din),           // Program Memory data input
-    .ram_wen     (pmem_wen)            // Program Memory write enable (low active)
+    .ram_wen     (pmem_wen),            // Program Memory write enable (low active)
+
+    .epmem_wen     (epmem_wen)            // Program Memory write enable (low active) from execution unit
 );
 
 //=============================================================================

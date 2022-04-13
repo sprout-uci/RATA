@@ -1,17 +1,18 @@
 #include <string.h>
 
-#define CTR_ADDR 0x0270 //TODO: Currently, CTR in DMEM but best way is to have dedicated memory for that (maybe in peripheral?)
+#define CTR_ADDR 0xFFC0
 #define VRF_AUTH 0x0250
 
 #define MAC_ADDR 0x0230
 #define KEY_ADDR 0x6A00
 
 #define ATTEST_DATA_ADDR 0xE000
-#define ATTEST_SIZE 0x1000
+#define ATTEST_SIZE 0x0005
 
 #define LMT_ADDR 0x0040
 #define LMT_SIZE 0x0020
 
+#define AUTH_HANDLER 0xA07E
 
 extern void hmac(uint8_t *mac, uint8_t *key, uint32_t keylen, uint8_t *data, uint32_t datalen);
 
@@ -42,6 +43,7 @@ __attribute__ ((section (".do_mac.call"))) void Hacl_HMAC_SHA2_256_hmac_entry()
     // Verifier Authentication before calling HMAC
     if (memcmp((uint8_t*) VRF_AUTH, verification, 32) == 0) 
     {
+      // Update the counter with the current authenticated challenge.
       memcpy((uint8_t*) CTR_ADDR, (uint8_t*) MAC_ADDR, 32);    
     
       // Key derivation function for rest of the computation of HMAC

@@ -65,9 +65,15 @@ module  omsp_mem_backbone (
     per_we,                             // Peripheral write enable (high active)
     per_en,                             // Peripheral enable (high active)
     pmem_addr,                          // Program Memory address
+
+    fpmem_addr,                         // Program Memory address for front end access
+
     pmem_cen,                           // Program Memory chip enable (low active)
     pmem_din,                           // Program Memory data input (optional)
     pmem_wen,                           // Program Memory write enable (low active) (optional)
+
+    epmem_wen,                          // Program Memory write enable (low active) from execution unit
+
     srom_addr,                          // SROM Memory address
     srom_cen,                           // SROM Memory chip enable
     srom_wen,                           // SROM Memory write enable
@@ -121,9 +127,15 @@ output        [15:0] per_din;           // Peripheral data input
 output         [1:0] per_we;            // Peripheral write enable (high active)
 output               per_en;            // Peripheral enable (high active)
 output [`PMEM_MSB:0] pmem_addr;         // Program Memory address
+
+output [`PMEM_MSB:0] fpmem_addr;        // Program Memory address for front end access
+
 output               pmem_cen;          // Program Memory chip enable (low active)
 output        [15:0] pmem_din;          // Program Memory data input (optional)
 output         [1:0] pmem_wen;          // Program Memory write enable (low active) (optional)
+
+output         [1:0] epmem_wen;          // Program Memory write enable (low active) from execution unit
+
 output [`SMEM_MSB:0] srom_addr;     // SROM Memory address 
 output               srom_cen;      // SROM Memory chip enable  
 output               srom_wen;      // SROM Memory write enable  (dbug only)
@@ -303,7 +315,8 @@ parameter          PMEM_OFFSET   = (16'hFFFF-`PMEM_SIZE+1);
 
 // Execution unit access (only read access are accepted)
 wire               eu_pmem_sel   = (eu_mab>=(PMEM_OFFSET>>1));
-wire               eu_pmem_en    = eu_mb_en & ~|eu_mb_wr & eu_pmem_sel;
+// wire               eu_pmem_en    = eu_mb_en & ~|eu_mb_wr & eu_pmem_sel;
+wire               eu_pmem_en    = eu_mb_en & eu_pmem_sel;
 wire        [15:0] eu_pmem_addr  = eu_mab-(PMEM_OFFSET>>1);
 
 // Front-end access
@@ -320,9 +333,16 @@ wire        [15:0] ext_pmem_addr = {1'b0, ext_mem_addr[15:1]}-(PMEM_OFFSET>>1);
 // Program-Memory Interface (Execution unit has priority over the Front-end)
 wire               pmem_cen      = ~(fe_pmem_en | eu_pmem_en | ext_pmem_en);
 wire         [1:0] pmem_wen      =  ext_pmem_en ? ~ext_mem_wr                 : 2'b11;
+// wire         [1:0] pmem_wen      =  ext_pmem_en ? ~ext_mem_wr                 : ~eu_mb_wr;
+wire         [1:0] epmem_wen     =  ext_pmem_en ? ~ext_mem_wr                 : 
+                                    eu_pmem_en  ? ~eu_mb_wr                   : 2'b11;
+// wire [`PMEM_MSB:0] pmem_addr     =  ext_pmem_en ?  ext_pmem_addr[`PMEM_MSB:0] :
+//                                     eu_pmem_en  ?  eu_pmem_addr[`PMEM_MSB:0]  : fe_pmem_addr[`PMEM_MSB:0];
 wire [`PMEM_MSB:0] pmem_addr     =  ext_pmem_en ?  ext_pmem_addr[`PMEM_MSB:0] :
                                     eu_pmem_en  ?  eu_pmem_addr[`PMEM_MSB:0]  : fe_pmem_addr[`PMEM_MSB:0];
-wire        [15:0] pmem_din      =  ext_mem_dout;
+wire [`PMEM_MSB:0] fpmem_addr    =  fe_pmem_addr[`PMEM_MSB:0];
+// wire        [15:0] pmem_din      =  ext_mem_dout;
+wire        [15:0] pmem_din      =  ext_pmem_en ?  ext_mem_dout               :  eu_mdb_out;
 
 
 //------------------------------------------

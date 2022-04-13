@@ -3,30 +3,37 @@
     SMEM_BASE := 0uh16_A000;
     SMEM_SIZE := 0uh16_4000;
     LAST_SMEM_ADDR := SMEM_BASE + SMEM_SIZE - 0uh16_2;
+    
 -- KEY RESERVED ROM
     KMEM_BASE := 0uh16_6A00;
     KMEM_SIZE := 0uh16_0040;
+
 -- STACK RESERVED ROM
     SDATA_BASE := 0uh16_0400;
     SDATA_SIZE := 0uh16_0C00;
+
 -- HMAC OUTPUT RESERVED ROM
     HMAC_BASE := 0uh16_0230;
     HMAC_SIZE := 0uh16_0020;
+
 -- COUNTER 
-    CTR_BASE := 0uh16_0270;
+    CTR_BASE := 0uh16_FFC0;
     CTR_SIZE := 0uh16_0020;
     LAST_CTR_ADDR := CTR_BASE + CTR_SIZE - 0uh16_2;
+
 -- Program Memory
     AR_BASE := 0uh16_e000;
-    AR_SIZE := 0uh16_2000;
+    AR_SIZE := 0uh16_1000;
     LAST_AR_ADDR := AR_BASE + AR_SIZE - 0uh16_2;
+
 -- Memory storing "Last Modified Time"
     LMT_BASE := 0uh16_0040;
     LMT_SIZE := 0uh16_0020;
     LAST_LMT_ADDR := LMT_BASE + LMT_SIZE - 0uh16_2;
--- TODO: Need the correct address of authentication success
-    AUTH_HANDLER := SMEM_BASE + 0uh16_0474;
---
+
+-- Authentication confirmation instruction pointer
+    AUTH_HANDLER := 0uh16_A07E;
+-- First location at control reaches after reset
     RESET_HANDLER := 0uh16_0000;
 
     pc_in_srom := "pc" >= SMEM_BASE & "pc" <= LAST_SMEM_ADDR;

@@ -69,7 +69,7 @@ wire violation2 = pc_in_srom && w_en && daddr_not_in_sdata && daddr_not_in_HMAC 
 wire violation3 = pc_not_in_srom && daddr_in_ctr && w_en;
 
 // State transition logic//////
-always @(*)
+always @(posedge clk)
 if(state == RUN && violation1)
     state <= KILL;
 else if (state == RUN && violation2)
@@ -82,7 +82,7 @@ else state <= state;
 //////////////////////////////
 
 // Output logic //////////////
-always @(*)
+always @(posedge clk)
 if( 
     (state == RUN && violation1) ||
     (state == RUN && violation2) ||
