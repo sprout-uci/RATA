@@ -7,7 +7,7 @@
 #define KEY_ADDR 0x6A00
 
 #define ATTEST_DATA_ADDR 0xE000
-#define ATTEST_SIZE 0x0005
+#define ATTEST_SIZE 0x1000
 
 #define LMT_ADDR 0x0040
 #define LMT_SIZE 0x0020
