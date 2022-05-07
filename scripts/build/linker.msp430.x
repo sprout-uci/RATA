@@ -96,6 +96,9 @@ SECTIONS
     PROVIDE (__mac_start = .) ;
     *(.do_mac.call)
     . = ALIGN(2);
+    PROVIDE (__mac_body = .) ;
+    *(.do_mac.body)
+    . = ALIGN(2);
     PROVIDE (__mac_lib_start = .) ;
     *(.do_mac.lib)
     . = ALIGN(2);
