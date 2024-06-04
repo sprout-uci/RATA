@@ -124,11 +124,11 @@ reg               stimulus_done;
 //`include "registers.v"
 
 // GPIO
-wire         [7:0] p3_din = dut.p3_din;
-wire         [7:0] p3_dout = dut.p3_dout;
-wire         [7:0] p3_dout_en = dut.p3_dout_en;
+//wire         [7:0] p3_din = dut.p3_din;
+//wire         [7:0] p3_dout = dut.p3_dout;
+//wire         [7:0] p3_dout_en = dut.p3_dout_en;
 
-wire         [7:0] p1_din = dut.p1_din;
+//wire         [7:0] p1_din = dut.p1_din;
 wire         [7:0] p1_dout = dut.p1_dout;
 wire         [7:0] p1_dout_en = dut.p1_dout_en;
 
@@ -138,7 +138,7 @@ wire         [7:0] p1_dout_en = dut.p1_dout_en;
 
 // RESET SIGNAL
 wire         puc_rst = dut.puc_rst;
-wire         reset_pin_n = dut.reset_pin_n;
+//wire         reset_pin_n = dut.reset_pin_n;
 
 //VAPE
 //mclk
@@ -147,7 +147,7 @@ wire              LED8;
 //======================
 
 wire       [15:0] pc    = dut.openMSP430_0.inst_pc;
-wire       [15:0] r0    = dut.openMSP430_0.execution_unit_0.register_file_0.r0;
+/*wire       [15:0] r0    = dut.openMSP430_0.execution_unit_0.register_file_0.r0;
 wire       [15:0] r1    = dut.openMSP430_0.execution_unit_0.register_file_0.r1;
 wire       [15:0] r2    = dut.openMSP430_0.execution_unit_0.register_file_0.r2;
 wire       [15:0] r3    = dut.openMSP430_0.execution_unit_0.register_file_0.r3;
@@ -162,11 +162,11 @@ wire       [15:0] r11   = dut.openMSP430_0.execution_unit_0.register_file_0.r11;
 wire       [15:0] r12   = dut.openMSP430_0.execution_unit_0.register_file_0.r12;
 wire       [15:0] r13   = dut.openMSP430_0.execution_unit_0.register_file_0.r13;
 wire       [15:0] r14   = dut.openMSP430_0.execution_unit_0.register_file_0.r14;
-wire       [15:0] r15   = dut.openMSP430_0.execution_unit_0.register_file_0.r15;
+wire       [15:0] r15   = dut.openMSP430_0.execution_unit_0.register_file_0.r15;*/
 
 //RATA values
 wire        auth = pc == 16'hA07E;
-wire        upLMT_periph   = dut.openMSP430_0.LMT_0.upLMT;
+/*wire        upLMT_periph   = dut.openMSP430_0.LMT_0.upLMT;
 wire        upLMT_vrased   = dut.openMSP430_0.up_lmt;
 wire        [15:0] MR_LMT [15:0]  = dut.openMSP430_0.LMT_0.MR_mem;
 wire        [15:0] LMT_LMT [15:0]   = dut.openMSP430_0.LMT_0.LMT_mem;
@@ -188,7 +188,7 @@ wire        [15:0] MR_bytes8  = dut.dmem_0.mem[31];
 // RAM cells
 //======================
 
-wire       [15:0] srom_cen = dut.openMSP430_0.srom_cen;
+wire       [15:0] srom_cen = dut.openMSP430_0.srom_cen;*/
 // Verilog stimulus
 //`include "stimulus.v"
 
